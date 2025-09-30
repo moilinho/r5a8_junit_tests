@@ -7,16 +7,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WordTest {
 
     @Test
-    public void should_check_one_incorrect_letter() {
+    public void should_score_one_correct_letter() {
         // Arrange
-        Word word = new Word("E"); // Le mot à deviner fait une lettre
+        Word word = new Word("E"); // Mot à deviner : "E"
 
         // Act
-        boolean result = word.guess('A'); // On essaie une lettre incorrecte
+        Score actual = word.guess("E"); // résultat obtenu
+        Letter expected = Letter.CORRECT; // attendu
 
         // Assert
-        assertFalse(result, "La lettre 'A' ne devrait pas être reconnue comme correcte pour le mot 'E'.");
-        assertEquals(1, word.getIncorrectTries(), "Le compteur d'erreurs devrait être incrémenté.");
+        assertEquals(expected, actual.letter(0),
+                "La première lettre devrait être CORRECT car la tentative est 'E'.");
     }
 }
-
